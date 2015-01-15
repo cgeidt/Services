@@ -5,7 +5,6 @@ return array(
         'Client',
         // 'Engine',
         'Registry',
-        'Services'
     ),
 
     // These are various options for the listeners attached to the ModuleManager

@@ -33,6 +33,9 @@ return array(
         'aliases' => array(
             'translator' => 'MvcTranslator',
         ),
+        'factories' => array(
+            'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+        )
     ),
 
     'controllers' => array(
@@ -52,6 +55,7 @@ return array(
             'error/404'     => __DIR__ . '/../view/error/404.phtml',
             'error/index'   => __DIR__ . '/../view/error/index.phtml',
             'client/service/index'   => __DIR__ . '/../view/service/index.phtml',
+            'client/service/detail'   => __DIR__ . '/../view/service/detail.phtml',
         ),
         'template_path_stack' => array(
             'client' => __DIR__ . '/../view',
@@ -61,6 +65,23 @@ return array(
     'console' => array(
         'router' => array(
             'routes' => array(
+            ),
+        ),
+    ),
+
+    'navigation' => array(
+        'default' => array(
+            array(
+                'label' => 'User',
+                'route' => 'client',
+                'controller' => 'service',
+                'action' => 'index'
+            ),
+            array(
+                'label' => 'Admin',
+                'route' => 'client',
+                'controller' => 'service',
+                'action' => 'la'
             ),
         ),
     ),
