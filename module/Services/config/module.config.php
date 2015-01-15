@@ -13,10 +13,7 @@ return array(
             'service' => array(
                 'type'    => 'Segment',
                 'options' => array(
-                    'route'    => '/services[/:controller[/:id]]',
-                    'constraints' => array(
-                        'id'     => '[0-9]*',
-                    ),
+                    'route'    => '/services[/:controller[/:action]]',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Services\Controller'
                     ),
