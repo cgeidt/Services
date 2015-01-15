@@ -24,6 +24,8 @@ class ServiceController extends AbstractActionController
     $request->setMethod(Request::METHOD_GET);
     $client = new Client();
     $response = $client->dispatch($request);
-    return array();
+    $result = json_decode($response->getBody());
+
+    return array('success' => $result->success, 'services' => $result->data);
    }
 }
