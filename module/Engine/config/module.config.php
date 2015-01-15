@@ -15,7 +15,7 @@ return array(
                 'options' => array(
                     'route'    => '/registry',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Registry\Controller',
+                        '__NAMESPACE__' => 'Engine\Controller',
                     ),
                 ),
                 'child_routes' => array(

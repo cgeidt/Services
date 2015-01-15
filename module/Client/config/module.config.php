@@ -10,24 +10,18 @@
 return array(
     'router' => array(
         'routes' => array(
-            'service' => array(
-                'type'    => 'Literal',
+            'stdRoute' => array(
+                'type'    => 'Segment',
                 'options' => array(
-                    'route'    => '/registry',
+                    'route'    => '/client[/:controller[/:action[/:id]]]',
+
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Registry\Controller',
+                        'controller' => 'Client\Controller\Service',
+                        'action'     => 'index',
+                        '__NAMESPACE__' => 'Client\Controller'
                     ),
                 ),
-                'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:id]]',
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
+
             ),
         ),
     ),
@@ -43,7 +37,7 @@ return array(
 
     'controllers' => array(
         'invokables' => array(
-            'Registry\Controller\Service' => 'Registry\Controller\ServiceController',
+            'Client\Controller\Service' => 'Client\Controller\ServiceController',
         ),
     ),
     'view_manager' => array(
@@ -59,10 +53,7 @@ return array(
             'error/index'   => __DIR__ . '/../view/error/index.phtml',
         ),
         'template_path_stack' => array(
-            'application' => __DIR__ . '/../view',
-        ),
-        'strategies' => array(
-            'ViewJsonStrategy',
+            'client' => __DIR__ . '/../view',
         ),
     ),
     // Placeholder for console routes

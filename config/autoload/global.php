@@ -30,4 +30,6 @@ return array(
             => 'Zend\Db\Adapter\AdapterServiceFactory',
         ),
     ),
+
+    'registry_url' => 'http://services.vmdev/service/registry',
 );

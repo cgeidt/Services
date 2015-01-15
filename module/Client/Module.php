@@ -7,14 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Registry;
+namespace Client;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use \Registry\Model\Service;
 use \Registry\Model\ServiceTable;
-use Zend\Db\ResultSet\ResultSet;
-use Zend\Db\TableGateway\TableGateway;
 
 class Module
 {
@@ -46,17 +44,6 @@ class Module
     {
         return array(
             'factories' => array(
-                'Registry\Model\ServiceTable' =>  function($sm) {
-                    $tableGateway = $sm->get('ServiceTableGateway');
-                    $table = new ServiceTable($tableGateway);
-                    return $table;
-                },
-                'ServiceTableGateway' => function ($sm) {
-                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Service());
-                    return new TableGateway('service', $dbAdapter, null, $resultSetPrototype);
-                },
             ),
         );
     }
