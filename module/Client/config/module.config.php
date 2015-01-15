@@ -10,7 +10,7 @@
 return array(
     'router' => array(
         'routes' => array(
-            'stdRoute' => array(
+            'client' => array(
                 'type'    => 'Segment',
                 'options' => array(
                     'route'    => '/client[/:controller[/:action[/:id]]]',
@@ -51,6 +51,7 @@ return array(
             'index/index'   => __DIR__ . '/../view/index/index.phtml',
             'error/404'     => __DIR__ . '/../view/error/404.phtml',
             'error/index'   => __DIR__ . '/../view/error/index.phtml',
+            'client/service/index'   => __DIR__ . '/../view/service/index.phtml',
         ),
         'template_path_stack' => array(
             'client' => __DIR__ . '/../view',
