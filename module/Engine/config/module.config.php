@@ -11,23 +11,14 @@ return array(
     'router' => array(
         'routes' => array(
             'service' => array(
-                'type'    => 'Literal',
+                'type'    => 'Segment',
                 'options' => array(
-                    'route'    => '/registry',
+                    'route'    => '/engine[/:controller[/:action]]',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Engine\Controller',
+                        '__NAMESPACE__' => 'Engine\Controller'
                     ),
                 ),
-                'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:id]]',
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
+
             ),
         ),
     ),

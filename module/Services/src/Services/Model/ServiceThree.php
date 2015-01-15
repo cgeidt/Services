@@ -13,7 +13,7 @@ class ServiceThree extends Service {
 
     static public function execute($params) {
         if( isset($params[0]) && is_int($params[0]) ) {
-            return $params[0] * $params[0];
+            return array($params[0] * $params[0]);
         } else {
             throw new InvalidArgumentException('Invalid Arguments (requires int*int)');
         }
