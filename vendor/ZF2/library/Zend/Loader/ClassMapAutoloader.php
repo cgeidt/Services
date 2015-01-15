@@ -22,7 +22,7 @@ require_once __DIR__ . '/SplAutoloader.php';
 class ClassMapAutoloader implements SplAutoloader
 {
     /**
-     * Registry of map files that have already been loaded
+     * Services of map files that have already been loaded
      * @var array
      */
     protected $mapsLoaded = array();

@@ -27,7 +27,7 @@ class HeadScript extends Placeholder\Container\AbstractStandalone
     const SCRIPT = 'SCRIPT';
 
     /**
-     * Registry key for placeholder
+     * Services key for placeholder
      *
      * @var string
      */

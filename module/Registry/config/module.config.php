@@ -18,7 +18,7 @@ return array(
                         'id'     => '[0-9]*',
                     ),
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Registry\Controller'
+                        '__NAMESPACE__' => 'Services\Controller'
                     ),
                 ),
 
@@ -37,7 +37,7 @@ return array(
 
     'controllers' => array(
         'invokables' => array(
-            'Registry\Controller\Service' => 'Registry\Controller\ServiceController',
+            'Services\Controller\Service' => 'Services\Controller\ServiceController',
         ),
     ),
     'view_manager' => array(

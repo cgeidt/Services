@@ -12,7 +12,7 @@ namespace Zend\View\Helper\Placeholder;
 use Zend\View\Exception;
 
 /**
- * Registry for placeholder containers
+ * Services for placeholder containers
  */
 class Registry
 {

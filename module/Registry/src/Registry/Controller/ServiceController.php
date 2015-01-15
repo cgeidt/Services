@@ -10,7 +10,7 @@ class ServiceController extends AbstractRestfulController
     public function getList()
     {
         /** @var \Registry\Model\ServiceTable $serviceTable */
-        $serviceTable = $this->getServiceLocator()->get('Registry/Model/ServiceTable');
+        $serviceTable = $this->getServiceLocator()->get('Services/Model/ServiceTable');
         $services = $serviceTable->fetchAll();
         /** @var \Registry\Model\Service $service */
         $serviceArr = array();
@@ -30,7 +30,7 @@ class ServiceController extends AbstractRestfulController
     public function get($id)
     {
         /** @var \Registry\Model\ServiceTable $serviceTable */
-        $serviceTable = $this->getServiceLocator()->get('Registry/Model/ServiceTable');
+        $serviceTable = $this->getServiceLocator()->get('Services/Model/ServiceTable');
         /** @var \Registry\Model\Service $service */
             $service = $serviceTable->getService($id);
 
@@ -62,7 +62,7 @@ class ServiceController extends AbstractRestfulController
         if($inputFilter->isValid()){
             $service->exchangeArray($inputFilter->getValues());
             /** @var \Registry\Model\ServiceTable $serviceTable */
-            $serviceTable = $this->getServiceLocator()->get('Registry\Model\ServiceTable');
+            $serviceTable = $this->getServiceLocator()->get('Services\Model\ServiceTable');
             try {
                 $id = $serviceTable->saveService($service);
 
@@ -101,7 +101,7 @@ class ServiceController extends AbstractRestfulController
             $service->exchangeArray($data);
             $service->setId($id);
             /** @var \Registry\Model\ServiceTable $serviceTable */
-            $serviceTable = $this->getServiceLocator()->get('Registry\Model\ServiceTable');
+            $serviceTable = $this->getServiceLocator()->get('Services\Model\ServiceTable');
             try {
                 $id = $serviceTable->saveService($service);
 
@@ -131,7 +131,7 @@ class ServiceController extends AbstractRestfulController
     public function delete($id)
     {
         /** @var \Registry\Model\ServiceTable $serviceTable */
-        $serviceTable = $this->getServiceLocator()->get('Registry\Model\ServiceTable');
+        $serviceTable = $this->getServiceLocator()->get('Services\Model\ServiceTable');
             $serviceTable->deleteService($id);
         return new JsonModel(array(
             'success' => true,

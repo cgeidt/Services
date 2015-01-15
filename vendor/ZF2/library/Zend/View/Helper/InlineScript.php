@@ -16,7 +16,7 @@ namespace Zend\View\Helper;
 class InlineScript extends HeadScript
 {
     /**
-     * Registry key for placeholder
+     * Services key for placeholder
      *
      * @var string
      */

@@ -20,7 +20,7 @@ class HeadTitle extends Placeholder\Container\AbstractStandalone implements
     TranslatorAwareInterface
 {
     /**
-     * Registry key for placeholder
+     * Services key for placeholder
      *
      * @var string
      */

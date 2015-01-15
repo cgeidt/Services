@@ -46,7 +46,7 @@ class Module
     {
         return array(
             'factories' => array(
-                'Registry\Model\ServiceTable' =>  function($sm) {
+                'Services\Model\ServiceTable' =>  function($sm) {
                     $tableGateway = $sm->get('ServiceTableGateway');
                     $table = new ServiceTable($tableGateway);
                     return $table;

@@ -42,7 +42,7 @@ class HeadMeta extends Placeholder\Container\AbstractStandalone
     protected $modifierKeys = array('lang', 'scheme');
 
     /**
-     * Registry key for placeholder
+     * Services key for placeholder
      *
      * @var string
      */

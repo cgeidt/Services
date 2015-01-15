@@ -19,7 +19,7 @@ use Zend\View\Exception;
 class HeadStyle extends Placeholder\Container\AbstractStandalone
 {
     /**
-     * Registry key for placeholder
+     * Services key for placeholder
      *
      * @var string
      */

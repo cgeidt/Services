@@ -44,7 +44,7 @@ class Doctype extends AbstractHelper
     protected $defaultDoctype = self::HTML4_LOOSE;
 
     /**
-     * Registry containing current doctype and mappings
+     * Services containing current doctype and mappings
      *
      * @var ArrayObject
      */
