@@ -56,5 +56,4 @@ class ServiceFour extends Service {
             throw new InvalidArgumentException('Invalid Arguments (requires int*int)');
         }
     }
-
 }
