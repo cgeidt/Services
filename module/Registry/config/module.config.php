@@ -10,7 +10,7 @@
 return array(
     'router' => array(
         'routes' => array(
-            'service' => array(
+            'registry' => array(
                 'type'    => 'Segment',
                 'options' => array(
                     'route'    => '/registry[/:controller[/:id]]',

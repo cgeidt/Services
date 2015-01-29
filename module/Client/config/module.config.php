@@ -16,7 +16,7 @@ return array(
                     'route'    => '/client[/:controller[/:action[/:id]]]',
 
                     'defaults' => array(
-                        'controller' => 'Client\Controller\Service',
+                        'controller' => 'Client\Controller\User',
                         'action'     => 'index',
                         '__NAMESPACE__' => 'Client\Controller'
                     ),
@@ -40,7 +40,7 @@ return array(
 
     'controllers' => array(
         'invokables' => array(
-            'Client\Controller\Service' => 'Client\Controller\ServiceController',
+            'Client\Controller\User' => 'Client\Controller\UserController',
         ),
     ),
     'view_manager' => array(
@@ -54,8 +54,8 @@ return array(
             'index/index'   => __DIR__ . '/../view/index/index.phtml',
             'error/404'     => __DIR__ . '/../view/error/404.phtml',
             'error/index'   => __DIR__ . '/../view/error/index.phtml',
-            'client/service/index'   => __DIR__ . '/../view/service/index.phtml',
-            'client/service/detail'   => __DIR__ . '/../view/service/detail.phtml',
+            'client/user/index'   => __DIR__ . '/../view/user/index.phtml',
+            'client/user/detail'   => __DIR__ . '/../view/user/detail.phtml',
         ),
         'template_path_stack' => array(
             'client' => __DIR__ . '/../view',
@@ -74,13 +74,13 @@ return array(
             array(
                 'label' => 'User',
                 'route' => 'client',
-                'controller' => 'service',
+                'controller' => 'user',
                 'action' => 'index'
             ),
             array(
                 'label' => 'Admin',
                 'route' => 'client',
-                'controller' => 'service',
+                'controller' => 'admin',
                 'action' => 'la'
             ),
         ),

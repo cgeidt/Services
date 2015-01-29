@@ -34,7 +34,6 @@ return array(
 
     'controllers' => array(
         'invokables' => array(
-            'Services\Controller\Service' => 'Services\Controller\ServiceController',
         ),
     ),
     'view_manager' => array(

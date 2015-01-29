@@ -4,15 +4,17 @@ namespace Services\Model;
 
 use Zend\Json\Exception\InvalidArgumentException;
 
-class ServiceFour extends Service {
+class ServiceFour extends Service
+{
 
     static protected $name = 'ServiceFour';
     static protected $description = 'Splits a number into two factors';
     static protected $input = array('integer');
     static protected $output = array('integer', 'integer');
 
-    static public function execute($params) {
-        if( isset($params[0]) && is_int($params[0]) ) {
+    static public function execute($params)
+    {
+        if (isset($params[0]) && is_int($params[0])) {
             $a = $params[0];
             $b = 1;
 
@@ -24,7 +26,7 @@ class ServiceFour extends Service {
                 while ($unten < $oben) {
                     if (($oben % $unten) == 0) {
                         $b = $unten;
-                        $a = (int) ($oben / $unten);
+                        $a = (int)($oben / $unten);
                         break;
                     } else {
                         $unten++;
@@ -38,7 +40,7 @@ class ServiceFour extends Service {
                 while ($unten < $oben) {
                     if (($oben % $unten) == 0) {
                         $b = $unten;
-                        $a = -1 * (int) ($oben / $unten);
+                        $a = -1 * (int)($oben / $unten);
                         break;
                     } else {
                         $unten++;
