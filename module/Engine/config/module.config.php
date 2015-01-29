@@ -10,12 +10,14 @@
 return array(
     'router' => array(
         'routes' => array(
-            'service' => array(
+            'engine' => array(
                 'type'    => 'Segment',
                 'options' => array(
-                    'route'    => '/engine[/:controller[/:action]]',
+                    'route'    => '/engine/execute[/:id]',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Engine\Controller'
+                        '__NAMESPACE__' => 'Engine\Controller',
+                        'controller' => 'Engine\Controller\Engine',
+                        'action' => 'execute',
                     ),
                 ),
 
@@ -34,6 +36,7 @@ return array(
 
     'controllers' => array(
         'invokables' => array(
+            'Engine\Controller\Engine' => 'Engine\Controller\EngineController',
         ),
     ),
     'view_manager' => array(

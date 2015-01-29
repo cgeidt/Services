@@ -4,6 +4,9 @@ namespace Services\Model;
 
 abstract class Service {
 
+    const META = 'metadata';
+    const EXEC = 'execute';
+
     protected $name;
     protected $description;
     protected $input;
@@ -13,10 +16,12 @@ abstract class Service {
 
     public function metadata() {
         return array(
-            'name' => $this->name,
-            'description' => $this->description,
-            'input' => $this->input,
-            'output' => $this->output,
+            array(
+                'name' => $this->name,
+                'description' => $this->description,
+                'input' => $this->input,
+                'output' => $this->output,
+            )
         );
     }
 }
