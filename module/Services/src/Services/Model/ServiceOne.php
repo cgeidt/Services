@@ -6,12 +6,14 @@ use Zend\Json\Exception\InvalidArgumentException;
 
 class ServiceOne extends Service {
 
-    static protected $name = 'ServiceOne';
-    static protected $description = 'Adds two numbers';
-    static protected $input = array('integer', 'integer');
-    static protected $output = array('integer');
+    public function __construct() {
+        $this->name = 'ServiceOne';
+        $this->description = 'Adds two numbers';
+        $this->input = array('integer', 'integer');
+        $this->output = array('integer');
+    }
 
-    static public function execute($params) {
+    public function execute($params) {
         if( isset($params[0]) && is_int($params[0]) && isset($params[1]) && is_int($params[1])) {
             return array($params[0] + $params[1]);
         } else {
