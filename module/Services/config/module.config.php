@@ -13,9 +13,12 @@ return array(
             'service' => array(
                 'type'    => 'Segment',
                 'options' => array(
-                    'route'    => '/services[/:controller[/:action]]',
+                    'route'    => '/services[/:servicename[/:command]]',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Services\Controller'
+                        '__NAMESPACE__' => 'Services\Controller',
+                        'controller' => 'Services\Controller\Service',
+                        'action' => 'service',
+                        'command' => 'metadata',
                     ),
                 ),
 

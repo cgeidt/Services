@@ -6,12 +6,14 @@ use Zend\Json\Exception\InvalidArgumentException;
 
 class ServiceFour extends Service {
 
-    static protected $name = 'ServiceFour';
-    static protected $description = 'Splits a number into two factors';
-    static protected $input = array('integer');
-    static protected $output = array('integer', 'integer');
+    public function __construct() {
+        $this->name = 'ServiceFour';
+        $this->description = 'Splits a number into two factors';
+        $this->input = array('integer');
+        $this->output = array('integer', 'integer');
+    }
 
-    static public function execute($params) {
+    public function execute($params) {
         if( isset($params[0]) && is_int($params[0]) ) {
             $a = $params[0];
             $b = 1;
@@ -54,4 +56,5 @@ class ServiceFour extends Service {
             throw new InvalidArgumentException('Invalid Arguments (requires int*int)');
         }
     }
+
 }
