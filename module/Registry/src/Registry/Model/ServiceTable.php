@@ -35,7 +35,7 @@ class ServiceTable
 
         $id = (int) $service->getId();
         if (!$id) {
-            if(!$this->getService($id)){
+            if($this->getService($id)){
                 throw new \Exception('A service with the name "'.$service->getName().'" already exists');
             }
             $this->tableGateway->insert($data);

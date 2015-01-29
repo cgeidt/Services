@@ -41,6 +41,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Client\Controller\User' => 'Client\Controller\UserController',
+            'Client\Controller\Admin' => 'Client\Controller\AdminController',
         ),
     ),
     'view_manager' => array(
@@ -56,6 +57,8 @@ return array(
             'error/index'   => __DIR__ . '/../view/error/index.phtml',
             'client/user/index'   => __DIR__ . '/../view/user/index.phtml',
             'client/user/detail'   => __DIR__ . '/../view/user/detail.phtml',
+            'client/admin/index'   => __DIR__ . '/../view/admin/index.phtml',
+            'client/admin/detail'   => __DIR__ . '/../view/admin/detail.phtml',
         ),
         'template_path_stack' => array(
             'client' => __DIR__ . '/../view',
@@ -81,7 +84,7 @@ return array(
                 'label' => 'Admin',
                 'route' => 'client',
                 'controller' => 'admin',
-                'action' => 'la'
+                'action' => 'index'
             ),
         ),
     ),
