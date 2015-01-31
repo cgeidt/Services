@@ -74,6 +74,7 @@ class AdminController extends AbstractActionController
             $form->setData($request->getPost());
                 if($form->isValid()){
                     $serviceData = $form->getData();
+                    $serviceData['composition'] = json_encode(explode(',', $serviceData['composition']));
 
                     $client = new Client();
                     $client->setUri($this->getRegistryUrl());
@@ -103,6 +104,8 @@ class AdminController extends AbstractActionController
             $form->setData($request->getPost());
             if ($form->isValid()) {
                 $serviceData = $form->getData();
+                $serviceData['composition'] = json_encode(explode(',', $serviceData['composition']));
+
                 $client = new Client();
                 $client->setUri($this->getRegistryUrl().'/'.$id);
                 $client->setParameterPost($serviceData);
@@ -125,7 +128,8 @@ class AdminController extends AbstractActionController
 
             if($result['success']){
                 $form->setData($result['data'][0]);
-                $form->get('submit')->setAttribute('label','Edit');
+                $form->get('composition')->setValue(implode(',', json_decode($form->get('composition')->getValue())));
+                $form->get('submit')->setValue('Edit');
                 return array('form' => $form);
             }else{
                 return $this->redirect()->toRoute('client', array('controller' => 'admin'));

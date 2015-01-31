@@ -56,7 +56,7 @@ return array(
             'error/404'     => __DIR__ . '/../view/error/404.phtml',
             'error/index'   => __DIR__ . '/../view/error/index.phtml',
             'client/user/index'   => __DIR__ . '/../view/user/index.phtml',
-            'client/user/detail'   => __DIR__ . '/../view/user/detail.phtml',
+            'client/user/detail'   => __DIR__ . '/../view/admin/detail.phtml',
             'client/admin/index'   => __DIR__ . '/../view/admin/index.phtml',
             'client/admin/detail'   => __DIR__ . '/../view/admin/detail.phtml',
             'client/admin/add'   => __DIR__ . '/../view/admin/add.phtml',

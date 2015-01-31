@@ -27,6 +27,14 @@ class ServiceForm extends Form{
                 'class' => 'form-control',
             ),
         ));
+
+        $this->add(array(
+            'name' => 'composition',
+            'type' => 'Text',
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
+        ));
         $this->add(array(
             'name' => 'description',
             'type' => 'Text',
