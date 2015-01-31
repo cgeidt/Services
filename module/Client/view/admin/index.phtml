@@ -2,9 +2,20 @@
 
 $title = 'Service overview';
 $this->headTitle($title);
+
+$addLink = $this->url('client',
+    array(
+        'controller' => 'admin',
+        'action' => 'add',
+    )
+);
 ?>
     <h1><?php echo $this->escapeHtml($title); ?></h1>
+    <p><a class="btn btn-primary" href="<?php echo $addLink; ?>">Add new service</a></p>
+
 <?php if($this->success): ?>
+
+
     <table class="table table-striped">
         <tr>
             <th>#</th>
@@ -16,20 +27,34 @@ $this->headTitle($title);
             <?php
             $link = $this->url('client',
                     array(
-                    'controller' => 'user',
+                    'controller' => 'admin',
                     'action' => 'detail',
                     'id' => $item->id,
                     )
                 );
+            $editLink = $this->url('client',
+                array(
+                    'controller' => 'admin',
+                    'action' => 'edit',
+                    'id' => $item->id,
+                )
+            );
+            $deleteLink = $this->url('client',
+                array(
+                    'controller' => 'admin',
+                    'action' => 'delete',
+                    'id' => $item->id,
+                )
+            );
             ?>
             <tr>
                 <td><?php echo $item->id ?></td>
                 <td><?php echo $item->name ?></td>
-                <td>--------------</td>
+                <td><?php echo $item->description ?></td>
                 <td>
                     <a class="btn btn-info" href="<?php echo $link ?>">Details</a>
-                    <a class="btn btn-warning" href="<?php echo $link ?>">Edit</a>
-                    <a class="btn btn-danger" href="<?php echo $link ?>">Delete</a>
+                    <a class="btn btn-warning" href="<?php echo $editLink ?>">Edit</a>
+                    <a class="btn btn-danger" href="<?php echo $deleteLink ?>">Delete</a>
                 </td>
             </tr>
         <?php endforeach ?>

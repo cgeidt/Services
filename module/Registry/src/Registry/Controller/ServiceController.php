@@ -18,6 +18,7 @@ class ServiceController extends AbstractRestfulController
             $serviceParsed = array();
             $serviceParsed['id'] = $service->getId();
             $serviceParsed['name'] = $service->getName();
+            $serviceParsed['description'] = $service->getDescription();
             $serviceArr[] = $serviceParsed;
         }
         return new JsonModel(array(

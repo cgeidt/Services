@@ -59,6 +59,9 @@ return array(
             'client/user/detail'   => __DIR__ . '/../view/user/detail.phtml',
             'client/admin/index'   => __DIR__ . '/../view/admin/index.phtml',
             'client/admin/detail'   => __DIR__ . '/../view/admin/detail.phtml',
+            'client/admin/add'   => __DIR__ . '/../view/admin/add.phtml',
+            'client/admin/edit'   => __DIR__ . '/../view/admin/edit.phtml',
+            'client/admin/delete'   => __DIR__ . '/../view/admin/delete.phtml',
         ),
         'template_path_stack' => array(
             'client' => __DIR__ . '/../view',
