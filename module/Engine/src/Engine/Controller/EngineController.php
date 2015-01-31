@@ -54,6 +54,9 @@ class EngineController extends AbstractActionController {
         var_dump($composition);
         var_dump($parameters);
         exit;
+
+        // for each service in composition -> execute service
+
     }
 
     public function executeAction() {
