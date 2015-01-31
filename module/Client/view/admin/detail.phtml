@@ -3,6 +3,13 @@
 $title = 'Service details';
 $this->headTitle($title);
 $service = $this->service[0];
+
+
+if($service->composition == null || empty($service->composition)){
+    $isComposition = false;
+}else{
+    $isComposition = true;
+}
 ?>
     <h1><?php echo $this->escapeHtml($title); ?></h1>
 <?php if($this->success): ?>
@@ -16,6 +23,16 @@ $service = $this->service[0];
             <td><?php echo $service->name ?></td>
         </tr>
         <tr>
+            <th>Composition</th>
+            <td><span class="glyphicon  <?php echo $isComposition ? 'glyphicon-ok-circle':'glyphicon-remove-circle' ?>"></span></td>
+        </tr>
+        <?php if($isComposition): ?>
+            <tr>
+                <th>Composition members</th>
+                <td><?php echo implode(', ',json_decode($service->composition)) ?></td>
+            </tr>
+        <?php endif ?>
+        <tr>
             <th>Description</th>
             <td><?php echo $service->description ?></td>
         </tr>
@@ -23,6 +40,7 @@ $service = $this->service[0];
             <th>URL</th>
             <td><?php echo $service->url ?></td>
         </tr>
+
     </table>
 <?php else : ?>
     <h1>Error: <?php echo $this->message ?></h1>
