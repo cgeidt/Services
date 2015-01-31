@@ -41,31 +41,37 @@ class EngineController extends AbstractActionController {
     }
 
     private function executeService($url, $parameters) {
-        return array('-1');
+        $client = new Client();
+        $client->setUri($url.'/'.\Services\Model\Service::EXEC);
+        $client->setMethod(Request::METHOD_POST);
+        $client->setParameterPost(array('parameters'=> $parameters));
+        $response = $client->send();
+        $result = $response->getBody();
+        return $result;
     }
 
     private function executeComposedService($composition, $parameters) {
+        // todo
         return array('-1');
     }
 
     public function executeAction() {
         // parameters: $id, $parameters
-        $id = $this->params()->fromRoute('id');
-        $parameters = $this->params()->fromRoute('parameters');
-        $result = null;
+        $id = $this->params()->fromPost('id');
+        $parameters = $this->params()->fromPost('parameters');
 
         // get service information from registry
         $serviceinfo = $this->getServiceInfo($id);
 
-        // check if service is composed
+        // check if service is composed and execute it
+        $result = null;
         if ($serviceinfo->composition == null) {
+            // single service
             $result = $this->executeService($serviceinfo->url, $parameters);
         } else {
+            // composed service
             $result = $this->executeComposedService($serviceinfo->composition, $parameters);
         }
-
-        var_dump($serviceinfo);
-        var_dump($result);
 
         return $result;
     }
