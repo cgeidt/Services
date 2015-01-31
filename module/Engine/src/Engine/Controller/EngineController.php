@@ -40,27 +40,34 @@ class EngineController extends AbstractActionController {
         return $result->data[0];
     }
 
+    private function executeService($url, $parameters) {
+        return array('-1');
+    }
+
+    private function executeComposedService($composition, $parameters) {
+        return array('-1');
+    }
+
     public function executeAction() {
-        // parameters: $id, $params
+        // parameters: $id, $parameters
         $id = $this->params()->fromRoute('id');
+        $parameters = $this->params()->fromRoute('parameters');
+        $result = null;
 
         // get service information from registry
         $serviceinfo = $this->getServiceInfo($id);
 
-        // get metadata for service
-        $url = $serviceinfo->url;
-        $metadata = $this->getServiceMetadata($url);
+        // check if service is composed
+        if ($serviceinfo->composition == null) {
+            $result = $this->executeService($serviceinfo->url, $parameters);
+        } else {
+            $result = $this->executeComposedService($serviceinfo->composition, $parameters);
+        }
 
-        var_dump($metadata);exit;
+        var_dump($serviceinfo);
+        var_dump($result);
 
-        // check if service is combined
-
-        // call service with params
-
-        // call combined service one by one with params
-
-        // return result
-
+        return $result;
     }
 
 }
