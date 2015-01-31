@@ -51,8 +51,9 @@ class EngineController extends AbstractActionController {
     }
 
     private function executeComposedService($composition, $parameters) {
-        // todo
-        return array('-1');
+        var_dump($composition);
+        var_dump($parameters);
+        exit;
     }
 
     public function executeAction() {

@@ -33,7 +33,7 @@ class ServiceController extends AbstractRestfulController
         /** @var \Registry\Model\ServiceTable $serviceTable */
         $serviceTable = $this->getServiceLocator()->get('Services/Model/ServiceTable');
         /** @var \Registry\Model\Service $service */
-            $service = $serviceTable->getService($id);
+        $service = $serviceTable->getService($id);
 
         if ($service) {
             $success = true;
@@ -83,7 +83,6 @@ class ServiceController extends AbstractRestfulController
             $data = array();
             $message = $inputFilter->getMessages();
         }
-
 
         return new JsonModel(array(
             'success' => $success,
