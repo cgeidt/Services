@@ -47,11 +47,17 @@ class EngineController extends AbstractActionController {
         // get service information from registry
         $serviceinfo = $this->getServiceInfo($id);
 
-        // get metadata for service
-        $url = $serviceinfo->url;
-        $metadata = $this->getServiceMetadata($url);
+        var_dump($serviceinfo);
 
-        var_dump($metadata);exit;
+        // check if service is composed
+        if ($serviceinfo->composition == null) {
+            // get metadata for service
+            $metadata = $this->getServiceMetadata($serviceinfo->url);
+            var_dump($metadata);
+        }
+
+        exit;
+
 
         // check if service is combined
 

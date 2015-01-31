@@ -17,12 +17,18 @@ class Service {
     protected $name;
     protected $description;
     protected $url;
+    protected $composition;
+    protected $input;
+    protected $output;
 
     public function exchangeArray($data = array()){
         $this->id  = empty($data['id']) ? null : $data['id'];
         $this->name  = empty($data['name']) ? null : $data['name'];
         $this->description  = empty($data['description']) ? null : $data['description'];
         $this->url  = empty($data['url']) ? null : $data['url'];
+        $this->composition = empty($data['composition']) ? null : $data['composition'];
+        $this->input = empty($data['input']) ? null : $data['input'];
+        $this->output = empty($data['output']) ? null : $data['output'];
     }
 
     public function getArrayCopy(){
@@ -31,6 +37,9 @@ class Service {
             'name' => $this->name,
             'description' => $this->description,
             'url' => $this->url,
+            'composition' => $this->composition,
+            'input' => $this->input,
+            'output' => $this->output,
         );
     }
 
@@ -96,6 +105,54 @@ class Service {
     public function setUrl($url)
     {
         $this->url = $url;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getComposition()
+    {
+        return $this->composition;
+    }
+
+    /**
+     * @param mixed $composition
+     */
+    public function setComposition($composition)
+    {
+        $this->composition = $composition;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInput()
+    {
+        return $this->input;
+    }
+
+    /**
+     * @param mixed $input
+     */
+    public function setInput($input)
+    {
+        $this->input = $input;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOutput()
+    {
+        return $this->output;
+    }
+
+    /**
+     * @param mixed $output
+     */
+    public function setOutput($output)
+    {
+        $this->output = $output;
     }
 
 
