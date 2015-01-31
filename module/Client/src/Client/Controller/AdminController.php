@@ -61,7 +61,7 @@ class AdminController extends AbstractActionController
         $client = new Client();
         $response = $client->dispatch($request);
         $result = json_decode($response->getBody());
-
+        return array('success' => $result->success, 'message' => $result->message, 'service' => $result->data);
         return array('success' => $result->success, 'message' => $result->message, 'service' => $result->data);
     }
 
@@ -75,6 +75,8 @@ class AdminController extends AbstractActionController
                 if($form->isValid()){
                     $serviceData = $form->getData();
                     $serviceData['composition'] = json_encode(explode(',', $serviceData['composition']));
+                    $serviceData['input'] = json_encode(explode(',', $serviceData['input']));
+                    $serviceData['output'] = json_encode(explode(',', $serviceData['output']));
 
                     $client = new Client();
                     $client->setUri($this->getRegistryUrl());
@@ -105,6 +107,8 @@ class AdminController extends AbstractActionController
             if ($form->isValid()) {
                 $serviceData = $form->getData();
                 $serviceData['composition'] = json_encode(explode(',', $serviceData['composition']));
+                $serviceData['input'] = json_encode(explode(',', $serviceData['input']));
+                $serviceData['output'] = json_encode(explode(',', $serviceData['output']));
 
                 $client = new Client();
                 $client->setUri($this->getRegistryUrl().'/'.$id);

@@ -23,6 +23,10 @@ if($service->composition == null || empty($service->composition)){
             <td><?php echo $service->name ?></td>
         </tr>
         <tr>
+            <th>Description</th>
+            <td><?php echo $service->description ?></td>
+        </tr>
+        <tr>
             <th>Composition</th>
             <td><span class="glyphicon  <?php echo $isComposition ? 'glyphicon-ok-circle':'glyphicon-remove-circle' ?>"></span></td>
         </tr>
@@ -33,9 +37,21 @@ if($service->composition == null || empty($service->composition)){
             </tr>
         <?php endif ?>
         <tr>
-            <th>Description</th>
-            <td><?php echo $service->description ?></td>
+            <th>Input</th>
+            <?php if($this->input): ?>
+                <td><?php echo implode(', ',json_decode($service->input)) ?></td>
+            <?php else: ?>
+                <td><pan class="glyphicon glyphicon-remove-circle"></pan></td>
+            <?php endif ?>
+
         </tr>
+        <tr>
+            <th>Output</th>
+            <?php if($this->output): ?>
+                <td><?php echo implode(', ',json_decode($service->output)) ?></td>
+            <?php else: ?>
+                <td><pan class="glyphicon glyphicon-remove-circle"></pan></td>
+            <?php endif ?>        </tr>
         <tr>
             <th>URL</th>
             <td><?php echo $service->url ?></td>
