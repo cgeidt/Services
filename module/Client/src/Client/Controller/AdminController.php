@@ -113,6 +113,7 @@ class AdminController extends AbstractActionController
                 $serviceData['composition'] = json_encode(explode(',', $serviceData['composition']));
                 $serviceData['input'] = json_encode(explode(',', $serviceData['input']));
                 $serviceData['output'] = json_encode(explode(',', $serviceData['output']));
+                $serviceData['categories'] = json_encode(explode(',', $serviceData['categories']));
 
                 $client = new Client();
                 $client->setUri($this->getRegistryUrl().'/'.$id);

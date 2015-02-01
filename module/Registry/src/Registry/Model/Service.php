@@ -313,38 +313,6 @@ class Service {
             ),
         ));
 
-        $filter->add(array(
-            'name' => 'createdAt',
-            'required' => true,
-            'validators' => array(
-                array(
-                    'createdAt' => 'not_empty',
-                ),
-                array(
-                    'name' => 'string_length',
-                    'options' => array(
-                        'min' => 1,
-                    ),
-                ),
-            ),
-        ));
-
-        $filter->add(array(
-            'name' => 'editedAt',
-            'required' => true,
-            'validators' => array(
-                array(
-                    'editedAt' => 'not_empty',
-                ),
-                array(
-                    'name' => 'string_length',
-                    'options' => array(
-                        'min' => 1,
-                    ),
-                ),
-            ),
-        ));
-
         return $filter;
     }
 

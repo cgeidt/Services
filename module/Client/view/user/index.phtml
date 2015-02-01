@@ -50,20 +50,6 @@ $filterLink = $this->url('client',
                     'id' => $item->id,
                 )
             );
-            $editLink = $this->url('client',
-                array(
-                    'controller' => 'user',
-                    'action' => 'edit',
-                    'id' => $item->id,
-                )
-            );
-            $deleteLink = $this->url('client',
-                array(
-                    'controller' => 'user',
-                    'action' => 'delete',
-                    'id' => $item->id,
-                )
-            );
             ?>
             <tr>
                 <td><?php echo $item->id ?></td>
@@ -72,8 +58,6 @@ $filterLink = $this->url('client',
                 <td><?php echo $item->categories ?></td>
                 <td>
                     <a class="btn btn-info" href="<?php echo $link ?>">Details</a>
-                    <a class="btn btn-warning" href="<?php echo $editLink ?>">Edit</a>
-                    <a class="btn btn-danger" href="<?php echo $deleteLink ?>">Delete</a>
                 </td>
             </tr>
         <?php endforeach ?>
