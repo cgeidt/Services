@@ -70,6 +70,16 @@ class ServiceForm extends Form{
                 'class' => 'form-control',
             ),
         ));
+
+        $this->add(array(
+            'name' => 'categories',
+            'type' => 'Text',
+
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
+        ));
+
         $this->add(array(
             'name' => 'submit',
             'type' => 'Submit',

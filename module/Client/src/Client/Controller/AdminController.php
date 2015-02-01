@@ -146,6 +146,9 @@ class AdminController extends AbstractActionController
                 if($form->get('output')->getValue()){
                     $form->get('output')->setValue(implode(',', json_decode($form->get('output')->getValue())));
                 }
+                if($form->get('categories')->getValue()){
+                    $form->get('categories')->setValue(implode(',', json_decode($form->get('categories')->getValue())));
+                }
                 $form->get('submit')->setValue('Edit');
                 return array('form' => $form);
             }else{
