@@ -302,6 +302,18 @@ class Service {
         ));
 
         $filter->add(array(
+            'name' => 'categories',
+            'validators' => array(
+                array(
+                    'name' => 'string_length',
+                    'options' => array(
+                        'min' => 1,
+                    ),
+                ),
+            ),
+        ));
+
+        $filter->add(array(
             'name' => 'createdAt',
             'required' => true,
             'validators' => array(
