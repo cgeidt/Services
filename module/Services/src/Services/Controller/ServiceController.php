@@ -7,7 +7,7 @@ use Zend\View\Model\JsonModel;
 class ServiceController extends AbstractActionController {
 
     public function serviceAction() {
-        $params = json_decode($this->params()->fromPost('params'), true);
+        $params = json_decode($this->params()->fromPost('parameters'), true);
         $success = true;
         $result = '';
         $message = '';
@@ -17,7 +17,6 @@ class ServiceController extends AbstractActionController {
         $command  = $this->params()->fromRoute('command');
         /** @var \Services\Model\Service $service */
         $service = new $path();
-
 
         try {
             $result = $service->$command($params);

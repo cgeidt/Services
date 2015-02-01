@@ -2,9 +2,7 @@
 
 namespace Services\Model;
 
-use Zend\Json\Exception\InvalidArgumentException;
-
-class ServiceTwo extends Service {
+class ServiceFive extends Service {
 
     public function __construct() {
         $this->name = 'ServiceFive';

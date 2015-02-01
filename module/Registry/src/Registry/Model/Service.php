@@ -20,6 +20,9 @@ class Service {
     protected $composition;
     protected $input;
     protected $output;
+    protected $categories;
+    protected $createdAt;
+    protected $editedAt;
 
     public function exchangeArray($data = array()){
         $this->id  = empty($data['id']) ? null : $data['id'];
@@ -29,6 +32,9 @@ class Service {
         $this->composition = empty($data['composition']) ? null : $data['composition'];
         $this->input = empty($data['input']) ? null : $data['input'];
         $this->output = empty($data['output']) ? null : $data['output'];
+        $this->categories = empty($data['categories']) ? null : $data['categories'];
+        $this->createdAt = empty($data['createdAt']) ? null : $data['createdAt'];
+        $this->editedAt = empty($data['editedAt']) ? null : $data['editedAt'];
     }
 
     public function getArrayCopy(){
@@ -40,6 +46,9 @@ class Service {
             'composition' => $this->composition,
             'input' => $this->input,
             'output' => $this->output,
+            'categories' => $this->categories,
+            'createdAt' => $this->createdAt,
+            'editedAt' => $this->editedAt,
         );
     }
 
@@ -155,6 +164,54 @@ class Service {
         $this->output = $output;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param mixed $categories
+     */
+    public function setCategories($categories)
+    {
+        $this->categories = $categories;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param mixed $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEditedAt()
+    {
+        return $this->editedAt;
+    }
+
+    /**
+     * @param mixed $editedAt
+     */
+    public function setEditedAt($editedAt)
+    {
+        $this->editedAt = $editedAt;
+    }
+
 
     /**
      * @return InputFilter $filter
@@ -208,9 +265,87 @@ class Service {
             ),
         ));
 
+        $filter->add(array(
+            'name' => 'composition',
+            'validators' => array(
+                array(
+                    'name' => 'string_length',
+                    'options' => array(
+                        'min' => 1,
+                    ),
+                ),
+            ),
+        ));
+
+        $filter->add(array(
+            'name' => 'input',
+            'validators' => array(
+                array(
+                    'name' => 'string_length',
+                    'options' => array(
+                        'min' => 1,
+                    ),
+                ),
+            ),
+        ));
+
+        $filter->add(array(
+            'name' => 'output',
+            'validators' => array(
+                array(
+                    'name' => 'string_length',
+                    'options' => array(
+                        'min' => 1,
+                    ),
+                ),
+            ),
+        ));
+
+        $filter->add(array(
+            'name' => 'categories',
+            'validators' => array(
+                array(
+                    'name' => 'string_length',
+                    'options' => array(
+                        'min' => 1,
+                    ),
+                ),
+            ),
+        ));
+
+        $filter->add(array(
+            'name' => 'createdAt',
+            'required' => true,
+            'validators' => array(
+                array(
+                    'createdAt' => 'not_empty',
+                ),
+                array(
+                    'name' => 'string_length',
+                    'options' => array(
+                        'min' => 1,
+                    ),
+                ),
+            ),
+        ));
+
+        $filter->add(array(
+            'name' => 'editedAt',
+            'required' => true,
+            'validators' => array(
+                array(
+                    'editedAt' => 'not_empty',
+                ),
+                array(
+                    'name' => 'string_length',
+                    'options' => array(
+                        'min' => 1,
+                    ),
+                ),
+            ),
+        ));
+
         return $filter;
     }
-
-
 
 } 

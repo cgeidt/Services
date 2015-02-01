@@ -27,6 +27,14 @@ class ServiceForm extends Form{
                 'class' => 'form-control',
             ),
         ));
+
+        $this->add(array(
+            'name' => 'composition',
+            'type' => 'Text',
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
+        ));
         $this->add(array(
             'name' => 'description',
             'type' => 'Text',
@@ -38,6 +46,24 @@ class ServiceForm extends Form{
 
         $this->add(array(
             'name' => 'url',
+            'type' => 'Text',
+
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'input',
+            'type' => 'Text',
+
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'output',
             'type' => 'Text',
 
             'attributes' => array(
