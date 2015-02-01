@@ -61,7 +61,6 @@ class AdminController extends AbstractActionController
         $client = new Client();
         $response = $client->dispatch($request);
         $result = json_decode($response->getBody());
-
         return array('success' => $result->success, 'message' => $result->message, 'service' => $result->data);
     }
 
@@ -75,7 +74,8 @@ class AdminController extends AbstractActionController
                 if($form->isValid()){
                     $serviceData = $form->getData();
                     $serviceData['composition'] = json_encode(explode(',', $serviceData['composition']));
-
+                    $serviceData['input'] = json_encode(explode(',', $serviceData['input']));
+                    $serviceData['output'] = json_encode(explode(',', $serviceData['output']));
                     $client = new Client();
                     $client->setUri($this->getRegistryUrl());
                     $client->setMethod(Request::METHOD_POST);
@@ -105,6 +105,8 @@ class AdminController extends AbstractActionController
             if ($form->isValid()) {
                 $serviceData = $form->getData();
                 $serviceData['composition'] = json_encode(explode(',', $serviceData['composition']));
+                $serviceData['input'] = json_encode(explode(',', $serviceData['input']));
+                $serviceData['output'] = json_encode(explode(',', $serviceData['output']));
 
                 $client = new Client();
                 $client->setUri($this->getRegistryUrl().'/'.$id);
@@ -128,7 +130,15 @@ class AdminController extends AbstractActionController
 
             if($result['success']){
                 $form->setData($result['data'][0]);
-                $form->get('composition')->setValue(implode(',', json_decode($form->get('composition')->getValue())));
+                if($form->get('composition')->getValue()) {
+                    $form->get('composition')->setValue(implode(',', json_decode($form->get('composition')->getValue())));
+                }
+                if($form->get('input')->getValue()){
+                    $form->get('input')->setValue(implode(',', json_decode($form->get('input')->getValue())));
+                }
+                if($form->get('output')->getValue()){
+                    $form->get('output')->setValue(implode(',', json_decode($form->get('output')->getValue())));
+                }
                 $form->get('submit')->setValue('Edit');
                 return array('form' => $form);
             }else{
