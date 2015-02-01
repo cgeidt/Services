@@ -52,7 +52,6 @@ class EngineController extends AbstractActionController {
 
     private function executeComposedService($composition, $parameters) {
         $comp = json_decode($composition);
-        // $params = json_decode($parameters);
         $params = $parameters;
         $length = count($comp);
 
@@ -68,6 +67,8 @@ class EngineController extends AbstractActionController {
             $url = $serviceinfo->url;
             // execute service
             $result = $this->executeService($url, $params);
+            // show whats happening
+            var_dump('service: '.$serviceinfo->description.', parameters: '.$params.', result: '.json_encode(json_decode($result)->data));
             // set params for next service
             $params = json_encode(json_decode($result)->data);
         }
