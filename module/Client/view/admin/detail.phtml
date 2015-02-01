@@ -43,7 +43,6 @@ if($service->composition == null || empty($service->composition)){
             <?php else: ?>
                 <td><pan class="glyphicon glyphicon-remove-circle"></pan></td>
             <?php endif ?>
-
         </tr>
         <tr>
             <th>Output</th>
@@ -51,10 +50,23 @@ if($service->composition == null || empty($service->composition)){
                 <td><?php echo implode(', ',json_decode($service->output)) ?></td>
             <?php else: ?>
                 <td><pan class="glyphicon glyphicon-remove-circle"></pan></td>
-            <?php endif ?>        </tr>
+            <?php endif ?>
+        </tr>
         <tr>
-            <th>URL</th>
-            <td><?php echo $service->url ?></td>
+            <th>Categories</th>
+            <?php if($service->categories && (!empty($service->categories))): ?>
+                <td><?php echo implode(', ',json_decode($service->categories)) ?></td>
+            <?php else: ?>
+                <td><pan class="glyphicon glyphicon-remove-circle"></pan></td>
+            <?php endif ?>
+        </tr>
+        <tr>
+            <th>Created</th>
+            <td><?php echo $service->createdAt ?></td>
+        </tr>
+        <tr>
+            <th>Last Edit</th>
+            <td><?php echo $service->editedAt ?></td>
         </tr>
 
     </table>
