@@ -10,7 +10,6 @@ class ServiceController extends AbstractRestfulController
     public function getList()
     {
         $description = $this->params()->fromQuery('description');
-        var_dump('<pre>', $description);
         $category = $this->params()->fromQuery('category');
 
 
@@ -22,11 +21,12 @@ class ServiceController extends AbstractRestfulController
         $serviceArr = array();
         foreach ($services as $service) {
 
-            if ($this->passesFilterDescription($description,  $service->getDescription()) & $this->passesFilterCategory($category, $service->getCategory())) {
+            if ($this->passesFilterDescription($description,  $service->getDescription()) & $this->passesFilterCategory($category, $service->getCategories())) {
                 $serviceParsed = array();
                 $serviceParsed['id'] = $service->getId();
                 $serviceParsed['name'] = $service->getName();
                 $serviceParsed['description'] = $service->getDescription();
+                $serviceParsed['categories'] = $service->getCategories();
                 $serviceArr[] = $serviceParsed;
             }else{}
         }
@@ -42,7 +42,7 @@ class ServiceController extends AbstractRestfulController
         if($descriptionFilter == null || empty($descriptionFilter)){
             return true;
         }
-        if(strpos($description, $descriptionFilter) !== false){
+        if(strpos($description, trim($descriptionFilter)) !== false){
             return true;
         }else{
             return false;
@@ -53,11 +53,15 @@ class ServiceController extends AbstractRestfulController
         if($categoryFilter == null || empty($category)){
             return true;
         }
-        if(in_array($categoryFilter, explode(',',$category))){
-            return true;
-        }else{
-            return false;
+        $return = false;
+        $catArr = explode(',',$category);
+        foreach($catArr as $cat){
+            if(trim($cat) == trim($categoryFilter)){
+                $return = true;
+                break;
+            }
         }
+        return $return;
     }
 
     public function get($id)

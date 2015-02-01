@@ -45,6 +45,7 @@ $filterLink = $this->url('client',
             <th>#</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Categories</th>
             <th>Action</th>
         </tr>
         <?php foreach($this->services as $item):?>
@@ -75,6 +76,7 @@ $filterLink = $this->url('client',
                 <td><?php echo $item->id ?></td>
                 <td><?php echo $item->name ?></td>
                 <td><?php echo $item->description ?></td>
+                <td><?php echo $item->categories ?></td>
                 <td>
                     <a class="btn btn-info" href="<?php echo $link ?>">Details</a>
                     <a class="btn btn-warning" href="<?php echo $editLink ?>">Edit</a>

@@ -23,6 +23,12 @@ class AdminController extends AbstractActionController
         $client = new Client();
         $client->setUri($this->getRegistryUrl());
         $client->setMethod(Request::METHOD_GET);
+        $client->setParameterGet(
+            array(
+                'description' => $description,
+                'category' => $category,
+                )
+        );
         $response = $client->send();
         $result = json_decode($response->getBody());
 
