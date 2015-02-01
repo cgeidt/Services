@@ -51,6 +51,21 @@ $filterLink = $this->url('client',
                 )
             );
             ?>
+
+            <?php
+            $executeLink = $this->url('client',
+                array(
+                    'controller' => 'user',
+                    'action' => 'execute',
+                    'id' => $item->id,
+                )
+            );
+            ?>
+
+
+
+
+
             <tr>
                 <td><?php echo $item->id ?></td>
                 <td><?php echo $item->name ?></td>
@@ -58,6 +73,9 @@ $filterLink = $this->url('client',
                 <td><?php echo $item->categories ?></td>
                 <td>
                     <a class="btn btn-info" href="<?php echo $link ?>">Details</a>
+                    <a class="btn btn-success" href="<?php echo $executeLink ?>">Execute</a>
+                    <a class="btn btn-warning" href="<?php echo $editLink ?>">Edit</a>
+                    <a class="btn btn-danger" href="<?php echo $deleteLink ?>">Delete</a>
                 </td>
             </tr>
         <?php endforeach ?>

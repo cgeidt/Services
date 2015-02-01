@@ -15,6 +15,23 @@ class UserController extends AbstractActionController
         return $config['registry_url'];
     }
 
+
+    protected function getServiceInput($id) {
+        $request = new Request();
+        $request->getHeaders()->addHeaders(array(
+            'Content-Type' => 'application/x-www-form-urlencoded; charset=UTF-8'
+        ));
+        $request->setUri($this->getRegistryUrl(). '/'. $id);
+        $request->setMethod(Request::METHOD_GET);
+        $client = new Client();
+        $response = $client->dispatch($request);
+        $result = json_decode($response->getBody());
+        echo ($result->data[0]->input);
+        return $result->data[0]->input;
+
+    }
+
+
     public function indexAction()
     {
         $description = $this->params()->fromQuery('description');
@@ -57,4 +74,24 @@ class UserController extends AbstractActionController
 
         return array('success' => $result->success, 'message' => $result->message, 'service' => $result->data);
     }
+
+    public function executeAction() {
+        $id = $this->params()->fromRoute('id');
+
+        $request = new Request();
+        $request->getHeaders()->addHeaders(array(
+            'Content-Type' => 'application/x-www-form-urlencoded; charset=UTF-8'
+        ));
+        $request->setUri($this->getRegistryUrl(). '/'. $id);
+        $request->setMethod(Request::METHOD_GET);
+        $client = new Client();
+        $response = $client->dispatch($request);
+        $result = json_decode($response->getBody());
+        echo ($result->data[0]->input);
+
+
+
+    }
+
+
 }
