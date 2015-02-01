@@ -62,6 +62,7 @@ return array(
             'client/admin/add'   => __DIR__ . '/../view/admin/add.phtml',
             'client/admin/edit'   => __DIR__ . '/../view/admin/edit.phtml',
             'client/admin/delete'   => __DIR__ . '/../view/admin/delete.phtml',
+            'client/user/execute'   => __DIR__ . '/../view/user/execute.phtml',
         ),
         'template_path_stack' => array(
             'client' => __DIR__ . '/../view',
