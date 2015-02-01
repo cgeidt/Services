@@ -208,6 +208,42 @@ class Service {
             ),
         ));
 
+        $filter->add(array(
+            'name' => 'composition',
+            'validators' => array(
+                array(
+                    'name' => 'string_length',
+                    'options' => array(
+                        'min' => 1,
+                    ),
+                ),
+            ),
+        ));
+
+        $filter->add(array(
+            'name' => 'input',
+            'validators' => array(
+                array(
+                    'name' => 'string_length',
+                    'options' => array(
+                        'min' => 1,
+                    ),
+                ),
+            ),
+        ));
+
+        $filter->add(array(
+            'name' => 'output',
+            'validators' => array(
+                array(
+                    'name' => 'string_length',
+                    'options' => array(
+                        'min' => 1,
+                    ),
+                ),
+            ),
+        ));
+
         return $filter;
     }
 
