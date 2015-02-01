@@ -2,7 +2,6 @@
 namespace Client\Controller;
 
 use Client\Form\ServiceForm;
-use Registry\Model\Service;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Http\Request;
 use Zend\Http\Client;
@@ -18,17 +17,18 @@ class AdminController extends AbstractActionController
 
     public function indexAction()
     {
-        $request = new Request();
-        $request->getHeaders()->addHeaders(array(
-                'Content-Type' => 'application/x-www-form-urlencoded; charset=UTF-8'
-        ));
-        $request->setUri($this->getRegistryUrl());
-        $request->setMethod(Request::METHOD_GET);
+        $description = $this->params()->fromQuery('description');
+        $category = $this->params()->fromQuery('category');
+
         $client = new Client();
-        $response = $client->dispatch($request);
+        $client->setUri($this->getRegistryUrl());
+        $client->setMethod(Request::METHOD_GET);
+        $response = $client->send();
         $result = json_decode($response->getBody());
 
         return array(
+            'description' => $description,
+            'category' => $category,
             'success' => $result->success,
             'message' => $result->message,
             'services' => $result->data

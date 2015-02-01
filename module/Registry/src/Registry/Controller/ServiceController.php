@@ -9,23 +9,55 @@ class ServiceController extends AbstractRestfulController
 {
     public function getList()
     {
+        $description = $this->params()->fromQuery('description');
+        var_dump('<pre>', $description);
+        $category = $this->params()->fromQuery('category');
+
+
+
         /** @var \Registry\Model\ServiceTable $serviceTable */
         $serviceTable = $this->getServiceLocator()->get('Services/Model/ServiceTable');
         $services = $serviceTable->fetchAll();
         /** @var \Registry\Model\Service $service */
         $serviceArr = array();
         foreach ($services as $service) {
-            $serviceParsed = array();
-            $serviceParsed['id'] = $service->getId();
-            $serviceParsed['name'] = $service->getName();
-            $serviceParsed['description'] = $service->getDescription();
-            $serviceArr[] = $serviceParsed;
+
+            if ($this->passesFilterDescription($description,  $service->getDescription()) & $this->passesFilterCategory($category, $service->getCategory())) {
+                $serviceParsed = array();
+                $serviceParsed['id'] = $service->getId();
+                $serviceParsed['name'] = $service->getName();
+                $serviceParsed['description'] = $service->getDescription();
+                $serviceArr[] = $serviceParsed;
+            }else{}
         }
         return new JsonModel(array(
             'success' => true,
             'data' => $serviceArr,
             'message' => ''
         ));
+    }
+
+
+    private function passesFilterDescription($descriptionFilter, $description){
+        if($descriptionFilter == null || empty($descriptionFilter)){
+            return true;
+        }
+        if(strpos($description, $descriptionFilter) !== false){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private function passesFilterCategory($categoryFilter, $category){
+        if($categoryFilter == null || empty($category)){
+            return true;
+        }
+        if(in_array($categoryFilter, explode(',',$category))){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function get($id)
