@@ -87,7 +87,7 @@ class UserController extends AbstractActionController
         $client = new Client();
         $response = $client->dispatch($request);
         $result = json_decode($response->getBody());
-        echo ($result->data[0]->input);
+        var_dump('<pre>', json_decode($result->data[0]->input));exit;
 
 
 
