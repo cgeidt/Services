@@ -76,8 +76,10 @@ $filterLink = $this->url('client',
                 </td>
 
                 <td>
-                    <a class="btn btn-info" href="<?php echo $link ?>">Details</a>
-                    <a class="btn btn-success" href="<?php echo $executeLink ?>">Execute</a>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-info" href="<?php echo $link ?>">Details</a>
+                        <a class="btn btn-success" href="<?php echo $executeLink ?>">Execute</a>
+                    </div>
                 </td>
             </tr>
         <?php endforeach ?>
