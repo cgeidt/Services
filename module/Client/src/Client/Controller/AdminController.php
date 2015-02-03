@@ -79,9 +79,19 @@ class AdminController extends AbstractActionController
             $form->setData($request->getPost());
                 if($form->isValid()){
                     $serviceData = $form->getData();
-                    $serviceData['composition'] = json_encode(explode(',', $serviceData['composition']));
-                    $serviceData['input'] = json_encode(explode(',', $serviceData['input']));
-                    $serviceData['output'] = json_encode(explode(',', $serviceData['output']));
+                    if ($serviceData['input'] != null) {
+                        $serviceData['input'] = json_encode(explode(',', $serviceData['input']));
+                    }
+                    if ($serviceData['output'] != null) {
+                        $serviceData['output'] = json_encode(explode(',', $serviceData['output']));
+                    }
+                    if ($serviceData['composition'] != null) {
+                        $serviceData['composition'] = json_encode(explode(',', $serviceData['composition']));
+                    }
+                    if ($serviceData['categories'] != null) {
+                        $serviceData['categories'] = json_encode(explode(',', $serviceData['categories']));
+                    }
+
                     $client = new Client();
                     $client->setUri($this->getRegistryUrl());
                     $client->setMethod(Request::METHOD_POST);
@@ -110,10 +120,18 @@ class AdminController extends AbstractActionController
             $form->setData($request->getPost());
             if ($form->isValid()) {
                 $serviceData = $form->getData();
-                $serviceData['composition'] = json_encode(explode(',', $serviceData['composition']));
-                $serviceData['input'] = json_encode(explode(',', $serviceData['input']));
-                $serviceData['output'] = json_encode(explode(',', $serviceData['output']));
-                $serviceData['categories'] = json_encode(explode(',', $serviceData['categories']));
+                if ($serviceData['input'] != null) {
+                    $serviceData['input'] = json_encode(explode(',', $serviceData['input']));
+                }
+                if ($serviceData['output'] != null) {
+                    $serviceData['output'] = json_encode(explode(',', $serviceData['output']));
+                }
+                if ($serviceData['composition'] != null) {
+                    $serviceData['composition'] = json_encode(explode(',', $serviceData['composition']));
+                }
+                if ($serviceData['categories'] != null) {
+                    $serviceData['categories'] = json_encode(explode(',', $serviceData['categories']));
+                }
 
                 $client = new Client();
                 $client->setUri($this->getRegistryUrl().'/'.$id);

@@ -161,7 +161,7 @@ class ServiceController extends AbstractRestfulController
             'success' => $success,
             'data' => $data,
             'message' => $message,
-        ));;
+        ));
     }
 
     public function delete($id)
