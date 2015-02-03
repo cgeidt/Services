@@ -14,7 +14,7 @@ class ServiceFour extends Service {
     }
 
     public function execute($params) {
-        if( isset($params[0]) && is_int($params[0]) ) {
+        if( isset($params[0]) && is_numeric($params[0]) ) {
             $a = $params[0];
             $b = 1;
 

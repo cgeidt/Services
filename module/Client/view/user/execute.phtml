@@ -1,0 +1,52 @@
+<?php
+
+$title = 'Execute service';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+
+
+
+<blockquote>
+    <p><?php echo $this->service->name ?></p>
+    <footer><?php echo $this->service->description ?></footer>
+</blockquote>
+<h2><small>Parameters</small></h2>
+
+<?php
+$inputParameters = json_decode($this->service->input);
+$link = $this->url('client',
+    array(
+        'controller' => 'user',
+        'action' => 'execute',
+        'id' => $this->service->id,
+    )
+);
+?>
+
+<form action="<?php echo $link ?>" method="post" class="form-horizontal" >
+    <?php foreach($inputParameters as $key => $inputParam):?>
+        <div class="form-group">
+            <div class="col-sm-4">
+                <input value="<?php echo $this->parameters[$key] ?>" class="form-control" name="parameters[<?php echo $key ?>]" type="text" placeholder="<?php echo $inputParam ?>">
+            </div>
+        </div>
+    <?php endforeach ?>
+    <input type="submit" class="btn btn-success" value="Execute">
+</form>
+
+
+<?php if($this->error): ?>
+    <div class="bg-danger">
+        <h3>Error message</h3>
+        <div><?php echo $this->error ?></div>
+    </div>
+<?php elseif($this->results): ?>
+    <div class="bg-success">
+        <h3>Service results</h3>
+        <?php foreach($this->results as $key =>$result): ?>
+            <div><h4>Result <?php echo $key+1 ?><small>    <?php echo $result ?></small></h4></div>
+        <?php endforeach ?>
+    </div>
+<?php endif ?>

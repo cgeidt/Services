@@ -15,20 +15,10 @@ class UserController extends AbstractActionController
         return $config['registry_url'];
     }
 
-
-    protected function getServiceInput($id) {
-        $request = new Request();
-        $request->getHeaders()->addHeaders(array(
-            'Content-Type' => 'application/x-www-form-urlencoded; charset=UTF-8'
-        ));
-        $request->setUri($this->getRegistryUrl(). '/'. $id);
-        $request->setMethod(Request::METHOD_GET);
-        $client = new Client();
-        $response = $client->dispatch($request);
-        $result = json_decode($response->getBody());
-        echo ($result->data[0]->input);
-        return $result->data[0]->input;
-
+    protected function getEngineUrl()
+    {
+        $config = $this->getServiceLocator()->get('Config');
+        return $config['execution_engine_url'];
     }
 
 
@@ -78,17 +68,43 @@ class UserController extends AbstractActionController
     public function executeAction() {
         $id = $this->params()->fromRoute('id');
 
-        $request = new Request();
-        $request->getHeaders()->addHeaders(array(
-            'Content-Type' => 'application/x-www-form-urlencoded; charset=UTF-8'
-        ));
-        $request->setUri($this->getRegistryUrl(). '/'. $id);
-        $request->setMethod(Request::METHOD_GET);
-        $client = new Client();
-        $response = $client->dispatch($request);
-        $result = json_decode($response->getBody());
-        var_dump('<pre>', json_decode($result->data[0]->input));exit;
+        if($this->getRequest()->isPost()){
 
+            $client = new Client();
+            $client->setUri($this->getRegistryUrl().'/'.$id);
+            $client->setMethod(Request::METHOD_GET);
+            $response = $client->send();
+            $resultService = json_decode($response->getBody());
+
+            $params = $this->params()->fromPost('parameters');
+
+            $client = new Client();
+            $client->setUri($this->getEngineUrl());
+            $client->setMethod(Request::METHOD_POST);
+            $client->setParameterPost(
+                array(
+                    'id' => (int)$id,
+                    'parameters' => json_encode($params),
+                    )
+            );
+            $response = $client->send();
+            $result = json_decode($response->getBody());
+
+            return array('service' => $resultService->data[0], 'results' => $result->data, 'error' => $result->message, 'parameters' => $params);
+
+        }else{
+            $client = new Client();
+            $client->setUri($this->getRegistryUrl().'/'.$id);
+            $client->setMethod(Request::METHOD_GET);
+            $response = $client->send();
+            $result = json_decode($response->getBody());
+
+            if($result->success){
+                return array('service' => $result->data[0]);
+            }else{
+                return $this->redirect()->toRoute('client', array('controller' => 'user'));
+            }
+        }
 
 
     }

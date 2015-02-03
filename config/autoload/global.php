@@ -32,4 +32,5 @@ return array(
     ),
 
     'registry_url' => 'http://services.vmdev/registry/service',
+    'execution_engine_url' => 'http://services.vmdev/engine/execute',
 );

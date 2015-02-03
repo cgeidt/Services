@@ -4,6 +4,13 @@ $title = 'Service details';
 $this->headTitle($title);
 $service = $this->service[0];
 
+$executeLink = $this->url('client',
+    array(
+        'controller' => 'user',
+        'action' => 'execute',
+        'id' => $service->id,
+    )
+);
 
 if($service->composition == null || empty($service->composition)){
     $isComposition = false;
@@ -70,6 +77,8 @@ if($service->composition == null || empty($service->composition)){
         </tr>
 
     </table>
+
+    <a href="<?php echo $executeLink ?>" class="btn btn-success">Execute</a>
 <?php else : ?>
     <h1>Error: <?php echo $this->message ?></h1>
 <?php endif ?>

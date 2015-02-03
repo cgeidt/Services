@@ -73,7 +73,6 @@ class EngineController extends AbstractActionController {
             $params = json_encode(json_decode($result)->data);
         }
 
-        var_dump($result);
         return $result;
     }
 
@@ -95,7 +94,6 @@ class EngineController extends AbstractActionController {
             $result = $this->executeComposedService($serviceinfo->composition, $parameters);
         }
 
-        return $result;
+        return new JsonModel(json_decode($result, true));
     }
-
 }
