@@ -24,6 +24,12 @@ class Service {
     protected $createdAt;
     protected $editedAt;
 
+
+    function __construct() {
+        $this->created();
+    }
+
+
     public function exchangeArray($data = array()){
         $this->id  = empty($data['id']) ? null : $data['id'];
         $this->name  = empty($data['name']) ? null : $data['name'];
@@ -51,6 +57,30 @@ class Service {
             'editedAt' => $this->editedAt,
         );
     }
+
+
+    /**
+     * returns current timestamp
+     */
+    public function getTimestamp() {
+        return date('Y-m-d H:i:s');
+    }
+
+    /**
+     * set createdAt timestamp to current time
+     */
+    private function created() {
+        $this->createdAt = $this->getTimestamp();
+        $this->edited();
+    }
+
+    /**
+     * set editedAt timestamp to current time
+     */
+    public function edited() {
+        $this->editedAt = $this->getTimestamp();
+    }
+
 
     /**
      * @return mixed

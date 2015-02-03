@@ -30,7 +30,7 @@ class ServiceTable
 
     public function saveService(Service $service)
     {
-
+        $service->edited();
         $data = $service->getArrayCopy();
 
         $id = (int) $service->getId();
