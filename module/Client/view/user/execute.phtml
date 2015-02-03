@@ -1,12 +1,9 @@
 <?php
-
-$title = 'Execute service';
-$this->headTitle($title);
+    $title = 'Execute service';
+    $this->headTitle($title);
 ?>
+
 <h1><?php echo $this->escapeHtml($title); ?></h1>
-
-
-
 
 <blockquote>
     <p><?php echo $this->service->name ?></p>
@@ -15,14 +12,14 @@ $this->headTitle($title);
 <h2><small>Parameters</small></h2>
 
 <?php
-$inputParameters = json_decode($this->service->input);
-$link = $this->url('client',
-    array(
-        'controller' => 'user',
-        'action' => 'execute',
-        'id' => $this->service->id,
-    )
-);
+    $inputParameters = json_decode($this->service->input);
+    $link = $this->url('client',
+        array(
+            'controller' => 'user',
+            'action' => 'execute',
+            'id' => $this->service->id,
+        )
+    );
 ?>
 
 <form action="<?php echo $link ?>" method="post" class="form-horizontal" >
@@ -44,9 +41,12 @@ $link = $this->url('client',
     </div>
 <?php elseif($this->results): ?>
     <div class="bg-success">
-        <h3>Service results</h3>
-        <?php foreach($this->results as $key =>$result): ?>
-            <div><h4>Result <?php echo $key+1 ?>: <?php echo $result ?></h4></div>
-        <?php endforeach ?>
+        <h3>Service Result:</h3>
+        <div><h4>
+            <?php foreach($this->results as $key =>$result): ?>
+                <?php if($key>0) echo ', ' ?>
+                <?php echo $result ?>
+            <?php endforeach ?>
+        </h4></div>
     </div>
 <?php endif ?>
