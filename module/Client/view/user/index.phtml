@@ -69,7 +69,7 @@ $filterLink = $this->url('client',
 
                 <td>
                     <?php if($item->categories && (!empty($item->categories))): ?>
-                        <td><?php echo implode(', ',json_decode($item->categories)) ?></td>
+                        <?php echo implode(', ',json_decode($item->categories)) ?>
                     <?php endif ?>
                 </td>
 
