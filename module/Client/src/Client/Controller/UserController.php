@@ -89,7 +89,10 @@ class UserController extends AbstractActionController
             $response = $client->send();
             $result = json_decode($response->getBody());
 
-            return array('service' => $resultService->data[0], 'results' => $result->data, 'error' => $result->message, 'parameters' => $params);
+            return array('service' => $resultService->data[0],
+                'results' => $result->data,
+                'error' => $result->message,
+                'parameters' => $params);
 
         }else{
             $client = new Client();

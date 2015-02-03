@@ -46,7 +46,7 @@ $link = $this->url('client',
     <div class="bg-success">
         <h3>Service results</h3>
         <?php foreach($this->results as $key =>$result): ?>
-            <div><h4>Result <?php echo $key+1 ?><small>    <?php echo $result ?></small></h4></div>
+            <div><h4>Result <?php echo $key+1 ?>: <?php echo $result ?></h4></div>
         <?php endforeach ?>
     </div>
 <?php endif ?>
