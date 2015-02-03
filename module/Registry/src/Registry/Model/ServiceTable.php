@@ -30,7 +30,6 @@ class ServiceTable
 
     public function saveService(Service $service)
     {
-        $service->edited();
         $data = $service->getArrayCopy();
 
         $id = (int) $service->getId();
@@ -41,6 +40,8 @@ class ServiceTable
             $this->tableGateway->insert($data);
             $id = $this->tableGateway->lastInsertValue;
         } else {
+            //avoid overwrite
+            unset($data['createdAt']);
             if ($this->getService($id)) {
                 $this->tableGateway->update($data, array('id' => $id));
             } else {

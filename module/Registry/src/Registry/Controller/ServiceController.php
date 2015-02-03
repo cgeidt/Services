@@ -12,8 +12,6 @@ class ServiceController extends AbstractRestfulController
         $description = $this->params()->fromQuery('description');
         $category = $this->params()->fromQuery('category');
 
-
-
         /** @var \Registry\Model\ServiceTable $serviceTable */
         $serviceTable = $this->getServiceLocator()->get('Services/Model/ServiceTable');
         $services = $serviceTable->fetchAll();
@@ -104,6 +102,7 @@ class ServiceController extends AbstractRestfulController
             /** @var \Registry\Model\ServiceTable $serviceTable */
             $serviceTable = $this->getServiceLocator()->get('Services\Model\ServiceTable');
             try {
+                $service->created();
                 $id = $serviceTable->saveService($service);
 
                 $success = true;
@@ -142,6 +141,7 @@ class ServiceController extends AbstractRestfulController
             /** @var \Registry\Model\ServiceTable $serviceTable */
             $serviceTable = $this->getServiceLocator()->get('Services\Model\ServiceTable');
             try {
+                $service->edited();
                 $id = $serviceTable->saveService($service);
 
                 $success = true;
