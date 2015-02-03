@@ -66,7 +66,11 @@ $filterLink = $this->url('client',
                 <td><?php echo $item->id ?></td>
                 <td><?php echo $item->name ?></td>
                 <td><?php echo $item->description ?></td>
-                <td><?php echo $item->categories ?></td>
+                <?php if($item->categories && (!empty($item->categories))): ?>
+                    <td><?php echo implode(', ',json_decode($item->categories)) ?></td>
+                <?php else: ?>
+                    <td></td>
+                <?php endif ?>
                 <td>
                     <a class="btn btn-info" href="<?php echo $link ?>">Details</a>
                     <a class="btn btn-success" href="<?php echo $executeLink ?>">Execute</a>
