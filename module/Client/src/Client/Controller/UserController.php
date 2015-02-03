@@ -5,7 +5,6 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Http\Request;
 use Zend\Http\Client;
 
-
 class UserController extends AbstractActionController
 {
 
