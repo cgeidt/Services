@@ -42,7 +42,7 @@ class ServiceController extends AbstractRestfulController
         if($descriptionFilter == null || empty($descriptionFilter)){
             return true;
         }
-        if(strpos($description, trim($descriptionFilter)) !== false){
+        if(strpos(strtolower($description), strtolower(trim($descriptionFilter))) !== false){
             return true;
         }else{
             return false;
@@ -50,13 +50,16 @@ class ServiceController extends AbstractRestfulController
     }
 
     private function passesFilterCategory($categoryFilter, $category){
-        if($categoryFilter == null || empty($category)){
+        if($categoryFilter == null || empty($categoryFilter)){
             return true;
         }
         $return = false;
-        $catArr = explode(',',$category);
+        $catArr = json_decode($category);
+        if($catArr == null){
+            return false;
+        }
         foreach($catArr as $cat){
-            if(trim($cat) == trim($categoryFilter)){
+            if(strtolower(trim($cat)) == strtolower(trim($categoryFilter))){
                 $return = true;
                 break;
             }
