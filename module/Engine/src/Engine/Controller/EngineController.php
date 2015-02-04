@@ -9,6 +9,8 @@ use Zend\View\Model\JsonModel;
 
 class EngineController extends AbstractActionController {
 
+    private $message;
+
     protected function getRegistryUrl(){
         $config = $this->getServiceLocator()->get('Config');
         return $config['registry_url'];
@@ -61,14 +63,17 @@ class EngineController extends AbstractActionController {
 
         // for each service in composition -> execute service
         for ($i = 0; $i < $length; $i++) {
+            // get service id
+            $id = $comp[$i];
             // get serviceinfo
-            $serviceinfo = $this->getServiceInfo($comp[$i]);
+            $serviceinfo = $this->getServiceInfo($id);
             // get url for service
             $url = $serviceinfo->url;
             // execute service
             $result = $this->executeService($url, $params);
             // show whats happening
-            var_dump('service: '.$serviceinfo->description.', parameters: '.$params.', result: '.json_encode(json_decode($result)->data));
+            $msg = '<strong>'.$serviceinfo->name.':</strong>&nbsp;&nbsp;'.$serviceinfo->description.',&nbsp;&nbsp;parameters:&nbsp;'.$params.',&nbsp;&nbsp;result:&nbsp;'.json_encode(json_decode($result)->data);
+            $this->addMessage($msg.PHP_EOL);
             // set params for next service
             $params = json_encode(json_decode($result)->data);
         }
@@ -80,6 +85,9 @@ class EngineController extends AbstractActionController {
         // parameters: $id, $parameters
         $id = $this->params()->fromPost('id');
         $parameters = $this->params()->fromPost('parameters');
+
+        // reset message
+        $this->setMessage('');
 
         // get service information from registry
         $serviceinfo = $this->getServiceInfo($id);
@@ -94,6 +102,22 @@ class EngineController extends AbstractActionController {
             $result = $this->executeComposedService($serviceinfo->composition, $parameters);
         }
 
-        return new JsonModel(json_decode($result, true));
+        $returnObject = json_decode($result, true);
+        $returnObject['message'] = $this->getMessage();
+        return new JsonModel($returnObject);
     }
+
+
+    private function getMessage() {
+        return $this->message;
+    }
+
+    private function setMessage($message) {
+        $this->message = $message;
+    }
+
+    private function addMessage($message) {
+        $this->message .= $message;
+    }
+
 }

@@ -90,11 +90,11 @@ class UserController extends AbstractActionController
             $result = json_decode($response->getBody());
 
             return array('service' => $resultService->data[0],
+                'success' => $result->success,
                 'results' => $result->data,
-                'error' => $result->message,
+                'message' => $result->message,
                 'parameters' => $params);
-
-        }else{
+        } else {
             $client = new Client();
             $client->setUri($this->getRegistryUrl().'/'.$id);
             $client->setMethod(Request::METHOD_GET);
@@ -107,9 +107,6 @@ class UserController extends AbstractActionController
                 return $this->redirect()->toRoute('client', array('controller' => 'user'));
             }
         }
-
-
     }
-
 
 }
