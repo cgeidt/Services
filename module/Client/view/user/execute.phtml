@@ -9,6 +9,7 @@
     <p><?php echo $this->service->name ?></p>
     <footer><?php echo $this->service->description ?></footer>
 </blockquote>
+
 <h2><small>Parameters</small></h2>
 
 <?php
@@ -23,13 +24,17 @@
 ?>
 
 <form action="<?php echo $link ?>" method="post" class="form-horizontal" >
-    <?php foreach($inputParameters as $key => $inputParam):?>
-        <div class="form-group">
-            <div class="col-sm-4">
-                <input value="<?php echo $this->parameters[$key] ?>" class="form-control" name="parameters[<?php echo $key ?>]" type="text" placeholder="<?php echo $inputParam ?>">
+    <?php if(empty($inputParameters)): ?>
+        <?php echo 'No input parameters required' ?><br><br>
+    <?php else: ?>
+        <?php foreach($inputParameters as $key => $inputParam):?>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <input value="<?php echo $this->parameters[$key] ?>" class="form-control" name="parameters[<?php echo $key ?>]" type="text" placeholder="<?php echo $inputParam ?>">
+                </div>
             </div>
-        </div>
-    <?php endforeach ?>
+        <?php endforeach ?>
+    <?php endif ?>
     <input type="submit" class="btn btn-success" value="Execute">
 </form>
 
