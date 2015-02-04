@@ -66,8 +66,11 @@ class UserController extends AbstractActionController
 
     public function executeAction() {
         $id = $this->params()->fromRoute('id');
+        if (!$id) {
+            return $this->redirect()->toRoute('client', array('controller' => 'user'));
+        }
 
-        if($this->getRequest()->isPost()){
+        if ($this->getRequest()->isPost()){
 
             $client = new Client();
             $client->setUri($this->getRegistryUrl().'/'.$id);
