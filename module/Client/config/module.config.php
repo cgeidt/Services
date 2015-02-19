@@ -82,13 +82,11 @@ return array(
                 'label' => 'User',
                 'route' => 'client',
                 'controller' => 'user',
-                'action' => 'index'
             ),
             array(
                 'label' => 'Admin',
                 'route' => 'client',
                 'controller' => 'admin',
-                'action' => 'index'
             ),
         ),
     ),
